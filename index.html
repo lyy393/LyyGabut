@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lyy Website</title><style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+  body { background: radial-gradient(circle at top, #1a1a2e, #0f0f1a); color:white; padding-bottom:90px; transition: background 0.5s, color 0.5s; }
+  body.light-mode { background: radial-gradient(circle at top, #f0f0f0, #ffffff); color:#111; }
+
+  .page { display:none; padding:20px; }
+  #home { display:block; }
+
+  .top-right {
+    position: fixed;
+    top: 15px; right: 15px;
+    display:flex; gap:10px;
+    z-index:9999;
+  }
+  .icon-btn { width:45px; height:45px; background:rgba(255,255,255,0.08); backdrop-filter:blur(3px); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; cursor:pointer; }
+
+  .hero {
+    width:90%; max-width:450px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); padding:25px; margin:90px auto 25px auto; border-radius:20px; backdrop-filter:blur(4px); text-align:center;
+  }
+  body.light-mode .hero { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.07); }
+
+  .profile-img { width:110px; height:110px; border-radius:50%; border:3px solid rgba(255,255,255,0.3); object-fit:cover; margin-bottom:15px; }
+  body.light-mode .profile-img { border-color: rgba(0,0,0,0.3); }
+
+  .title { font-size:22px; font-weight:bold; background:linear-gradient(90deg, #4aaaff, #b966ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .quote { font-size:14px; opacity:0.9; margin-top:10px; }
+
+  .big-card { width:90%; max-width:450px; margin:20px auto; padding:20px; border-radius:20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); transition: background 0.5s, border-color 0.5s; }
+  body.light-mode .big-card { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.08); }
+  .big-title { font-size:18px; background:linear-gradient(90deg, #4aaaff, #b966ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:bold; margin-bottom:10px; }
+  .big-desc { font-size:14px; opacity:0.85; }
+
+  .qris-img { width:80%; max-width:300px; border-radius:15px; margin:20px auto; display:block; }
+  .pay-number { font-size:18px; margin-top:10px; font-weight:bold; }
+
+  .tools-title { text-align:center; font-size:22px; font-weight:bold; margin-bottom:20px; background:linear-gradient(90deg, #4aaaff, #b966ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:10px; }
+  .tool-item { background: rgba(255,255,255,0.06); border-radius:18px; padding:18px 5px; text-align:center; border:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit; transition: background 0.5s, border-color 0.5s; }
+  body.light-mode .tool-item { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.1); }
+  .tool-icon { font-size:32px; margin-bottom:8px; }
+  .tool-label { font-size:13px; }
+
+  .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:20px; }
+  .contact-card { text-align:center; text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; font-size:14px; }
+  .contact-card img { width:50px; height:50px; border-radius:10px; margin-bottom:5px; object-fit:cover; }
+
+  .navbar-bottom { position:fixed; left:0; bottom:0; width:100%; height:70px; background:#0c0c0c; border-top:1px solid #222; display:flex; justify-content:space-around; align-items:center; transition:background 0.5s,border-color 0.5s; z-index:999; }
+  body.light-mode .navbar-bottom { background:#e0e0e0; border-color:#ccc; }
+  .navbar-bottom a { color:inherit; text-decoration:none; text-align:center; font-size:13px; display:flex; flex-direction:column; align-items:center; cursor:pointer; }
+
+  .fade-in { opacity:0; animation:fadeIn 0.5s forwards; }
+  @keyframes fadeIn { to { opacity:1; } }
+</style></head><body><!-- Musik Background --><audio id="bg-music" autoplay loop>
+  <source src="https://cdn.jsdelivr.net/gh/lyy393/soundd@main/menu.mp3" type="audio/mpeg">
+  Browser tidak mendukung audio element.
+</audio><!-- Top Right Buttons --><div class="top-right">
+  <div class="icon-btn" id="music-btn">🎵</div>
+  <div class="icon-btn" id="theme-btn">🌙</div>
+</div><!-- HOME PAGE --><div class="page" id="home">
+  <div class="hero">
+    <img src="https://files.catbox.moe/7sdgur.jpg" class="profile-img fade-in" style="animation-delay:0s;">
+    <div class="title fade-in" style="animation-delay:0.2s;">Hello, Have a Nice Day!<br>Selamat Datang di Website Lyy</div>
+    <div class="quote fade-in" style="animation-delay:0.4s;">✨ “Doa yang tulus tak pernah sia-sia, hanya menunggu waktu terbaik dari Allah.”<br><br><small>Quotes By Lyy | Ai</small></div>
+  </div>  <div class="big-card fade-in" style="animation-delay:0.6s;">
+    <div class="big-title">Program Discussion</div>
+    <div class="big-desc">Membahas ide pengembangan website & project</div>
+  </div>  <div class="big-card fade-in" style="animation-delay:0.8s;">
+    <div class="big-title">Innovation Vision</div>
+    <div class="big-desc">Fokus pada project masa depan dan teknologi</div>
+  </div>  <div class="big-card fade-in" style="animation-delay:1s;">
+    <div class="big-title">Security Management</div>
+    <div class="big-desc">Keamanan data dan pengamanan akses</div>
+  </div>  <!-- Contact Section -->  <div class="big-card fade-in" style="animation-delay:1.2s;">
+    <div class="big-title">Contact Lyy</div>
+<div class="contact-grid">
+  <a class="contact-card" href="https://wa.me/6281917010043">
+    <img src="https://img1.pixhost.to/images/8185/634294459_coganz.jpg" alt="WhatsApp">
+    <span>WhatsApp</span>
+  </a>
+  <a class="contact-card" href="https://t.me/Kaguchiii">
+    <img src="https://img1.pixhost.to/images/8185/634294799_coganz.jpg" alt="Telegram">
+    <span>Telegram</span>
+  </a>
+  <a class="contact-card" href="https://www.instagram.com/h4bibiiee_/">
+    <img src="https://files.catbox.moe/1ryxqj.jpg" alt="Instagram">
+    <span>Instagram</span>
+  </a>
+</div>
+    </div>
+  </div>
+</div><!-- SUPPORT PAGE --><div class="page" id="Support">
+  <h2 class="fade-in" style="animation-delay:0.2s;">Saudara Lyy:</h2>
+  <ul class="fade-in" style="animation-delay:0.4s; margin-top:15px; line-height:1.8; font-size:18px;">
+    <li>Widz</li><li>Wanz</li><li>Zamz</li><li>Aniz</li>
+  </ul>
+  <h2 class="fade-in" style="animation-delay:0.6s;">Temen Kls Lyy:</h2>
+  <ul class="fade-in" style="animation-delay:0.8s; margin-top:15px; line-height:1.8; font-size:18px;">
+    <li>Riyan</li><li>Zainul</li><li>Fadil</li><li>Umam</li><li>Wafa</li><li>Rahman</li>
+    <li>Farabi</li><li>Zaki</li><li>Evan</li><li>Nawaf</li><li>Hizbi</li><li>Rapa</li>
+    <li>Mahdi</li><li>Zohri</li><li>Fahri</li><li>Davi</li><li>Hamdani</li><li>Sandi</li>
+    <li>Arif</li><li>Rizky</li><li>Rizal</li><li>Lukman</li><li>Sukron</li><li>Ardian</li>
+    <li>Agus</li><li>Hakim</li><li>Randi</li><li>Hairul</li><li>Riko</li><li>Zidan</li>
+    <li>Ludvi</li><li>Nasrul</li>
+  </ul>
+</div><!-- PAYMENT PAGE --><div class="page" id="payment">
+  <h2 class="fade-in" style="animation-delay:0.2s;">QRIS Payment</h2>
+  <img src="https://files.catbox.moe/x5cnhm.jpg" class="qris-img fade-in" style="animation-delay:0.4s;">
+  <p class="pay-number fade-in" style="animation-delay:0.6s;">Dana: <br> <b id="dana">087781213463</b></p>
+<button onclick="copyDana()" style="padding:10px 15px; border:none; background:#4aaaff; color:white; border-radius:8px; margin-top:10px; cursor:pointer;">
+  Copy Nomor Dana
+</button>
+</div><!-- TOOLS PAGE --><div class="page" id="tools">
+  <div class="tools-title fade-in" style="animation-delay:0.2s;">Game dan Tools By Lyy</div>
+  <div class="tools-grid">
+    <a href="https://getcode-eta.vercel.app/" class="tool-item fade-in" style="animation-delay:0.4s;"><div class="tool-icon">🧩</div><div class="tool-label">GetCode</div></a>
+    <a href="https://ip-beta-rust.vercel.app/" class="tool-item fade-in" style="animation-delay:0.6s;"><div class="tool-icon">🌐</div><div class="tool-label">IP Checker</div></a>
+    <a href="https://tiktok-p2dw.vercel.app/" class="tool-item fade-in" style="animation-delay:0.8s;"><div class="tool-icon">📥</div><div class="tool-label">TikTok DL</div></a>
+    <a href="https://game3-eta.vercel.app/" class="tool-item fade-in" style="animation-delay:1s;"><div class="tool-icon">🎮</div><div class="tool-label">Game 3</div></a>
+    <a href="https://game2.cxg0.my.id" class="tool-item fade-in" style="animation-delay:1.2s;"><div class="tool-icon">🕹️</div><div class="tool-label">Game 2</div></a>
+    <a href="https://lyy.w1nc.my.id" class="tool-item fade-in" style="animation-delay:1.4s;"><div class="tool-icon">🚀</div><div class="tool-label">Lyy Site</div></a>
+  </div>
+</div><!-- NAVBAR --><div class="navbar-bottom">
+  <a onclick="show('home')"><div style="font-size:24px;">🏠</div>home</a>
+  <a onclick="show('Support')"><div style="font-size:24px;">👥</div>Support</a>
+  <a onclick="show('payment')"><div style="font-size:24px;">💳</div>Payment</a>
+  <a onclick="show('tools')"><div style="font-size:24px;">🛠️</div>Tools</a>
+</div><script>
+function show(page){
+  document.querySelectorAll(".page").forEach(p => p.style.display="none");
+  document.getElementById(page).style.display="block";
+}
+
+function copyDana() {
+  let dana = document.getElementById("dana").innerText;
+  navigator.clipboard.writeText(dana);
+  alert("Nomor Dana disalin!");
+}
+
+// Musik play/pause
+const musicBtn = document.getElementById("music-btn");
+const bgMusic = document.getElementById("bg-music");
+musicBtn.addEventListener("click", () => {
+  if(bgMusic.paused){ bgMusic.play(); musicBtn.textContent="🔊"; } 
+  else { bgMusic.pause(); musicBtn.textContent="🎵"; }
+});
+
+// Dark/Light mode toggle
+const themeBtn = document.getElementById("theme-btn");
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  themeBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+});
+</script></body>
+</html>
