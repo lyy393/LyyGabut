@@ -176,6 +176,25 @@
     }
 
     /* ---------- Contact ---------- */
+    .spotify-float {
+  position: fixed;
+  bottom: 70px; /* biar ga ketutup navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 420px;
+  height: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0, 255, 200, 0.35);
+  z-index: 999;
+}
+
+.spotify-float iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
     .support-box{
   margin-top:25px;
   display:flex;
@@ -441,25 +460,7 @@
   margin-top: 10px;
   font-size: 14px;
 }
-.spotify-float {
-  position: fixed;
-  bottom: 70px; /* biar ga ketutup navbar */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 420px;
-  height: 160px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 35px rgba(0, 255, 200, 0.35);
-  z-index: 999;
-}
 
-.spotify-float iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-    }
   </style>
 </head>
 
