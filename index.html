@@ -525,19 +525,58 @@
     </div>
 
     <!-- Request Section -->
-    <div class="request-section fade-in" style="animation-delay:1.4s;">
-      <h2>🚀 Request Fitur</h2>
+    <script>
+      <div class="request-section">
+  <h2>🚀 Request Fitur</h2>
 
-      <form id="requestForm">
-        <input type="text" id="name" placeholder="Nama kamu" required>
-        <input type="text" id="title" placeholder="Judul fitur" required>
-        <textarea id="desc" placeholder="Deskripsi fitur" rows="4" required></textarea>
-        <button type="submit" id="submitBtn">📩 Kirim ke Telegram</button>
-      </form>
+  <form id="requestForm">
+    <input type="text" id="name" placeholder="Nama kamu" required>
+    <input type="text" id="title" placeholder="Judul fitur" required>
+    <textarea id="desc" placeholder="Deskripsi fitur" required></textarea>
+    <button type="submit">📩 Kirim ke Telegram</button>
+  </form>
 
-      <div id="status"></div>
-    </div>
-  </div>
+  <p id="status"></p>
+</div>
+
+<script>
+const TOKEN = "8211011386:AAEeWeXPveAM7M-16X7ulTGvERXQIi_RdJE";
+const CHAT_ID = "8058947668";
+
+document.getElementById("requestForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const title = document.getElementById("title").value;
+  const desc = document.getElementById("desc").value;
+
+  const message = `
+📩 *REQUEST FITUR BARU*
+👤 Nama: ${name}
+📝 Judul: ${title}
+
+📖 Deskripsi:
+${desc}
+  `;
+
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message,
+      parse_mode: "Markdown"
+    })
+  })
+  .then(res => {
+    document.getElementById("status").innerText = "✅ Request terkirim ke Telegram!";
+    document.getElementById("requestForm").reset();
+  })
+  .catch(err => {
+    document.getElementById("status").innerText = "❌ Gagal mengirim!";
+  });
+});
+</script>
 
   <!-- SUPPORT PAGE -->
   <div class="page" id="Support">
