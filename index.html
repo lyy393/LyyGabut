@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -176,33 +176,106 @@
     }
 
     /* ---------- Contact ---------- */
+    .spotify-container {
+      position: relative;
+      width: 90%;
+      max-width: 450px;
+      margin: 20px auto;
+      height: 160px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 35px rgba(0, 255, 200, 0.35);
+    }
     .spotify-float {
-  position: fixed;
-  bottom: 70px; /* biar ga ketutup navbar */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 420px;
-  height: 160px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 35px rgba(0, 255, 200, 0.35);
-  z-index: 999;
-}
-
-.spotify-float iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
     .support-box{
-  margin-top:25px;
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+      margin-top:25px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
 
+    /* ---------- Request Section ---------- */
+    .request-section {
+      width: 90%;
+      max-width: 450px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      color: #fff;
+    }
+    body.light-mode .request-section {
+      background: rgba(0,0,0,0.08);
+      color: #111;
+    }
+    .request-section h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    #requestForm input,
+    #requestForm textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    body.light-mode #requestForm input,
+    body.light-mode #requestForm textarea {
+      background: rgba(0,0,0,0.15);
+      color: #111;
+    }
+    #requestForm button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#00c6ff,#0072ff);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #requestForm button:hover {
+      transform: scale(1.02);
+    }
+    #requestForm button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #status {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 8px;
+      display: none;
+    }
+    .status-success {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4CAF50;
+      border: 1px solid #4CAF50;
+    }
+    .status-error {
+      background: rgba(244, 67, 54, 0.2);
+      color: #f44336;
+      border: 1px solid #f44336;
+    }
+    .status-loading {
+      background: rgba(33, 150, 243, 0.2);
+      color: #2196F3;
+      border: 1px solid #2196F3;
+    }
 
     /* ---------- Navbar ---------- */
     .navbar-bottom {
@@ -232,6 +305,15 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
+      padding: 8px;
+      border-radius: 12px;
+      transition: background 0.3s;
+    }
+    .navbar-bottom a.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    body.light-mode .navbar-bottom a.active {
+      background: rgba(0, 0, 0, 0.1);
     }
 
     /* ---------- Animation ---------- */
@@ -249,7 +331,7 @@
     .wa-float {
       position: fixed;
       bottom: 90px;
-      left: 20px;
+      right: 20px;
       width: 56px;
       height: 56px;
       background: #25D366;
@@ -262,13 +344,17 @@
       cursor: pointer;
       z-index: 9999;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
     }
 
     /* ---------- WhatsApp Popup ---------- */
     .wa-popup {
       position: fixed;
       bottom: 160px;
-      left: 20px;
+      right: 20px;
       width: 260px;
       background: #fff;
       border-radius: 12px;
@@ -311,10 +397,33 @@
     .wa-option:hover {
       background: #f1f1f1;
     }
+    .telegram-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s;
+    }
+    .telegram-option:hover {
+      background: #f1f1f1;
+    }
     .wa-icon-small {
       width: 36px;
       height: 36px;
       background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .telegram-icon-small {
+      width: 36px;
+      height: 36px;
+      background: #0088cc;
       color: #fff;
       border-radius: 50%;
       display: flex;
@@ -329,115 +438,44 @@
       color: #666;
     }
 
-    /* ---------- Live Support Popup ---------- */
-        .live-popup {
+    /* ---------- Toast Notification ---------- */
+    .toast {
       position: fixed;
-      bottom: 0;
-      right: 15px;
-      width: 300px;
-      height: 380px;
-      background: #121212;
-      border-radius: 16px 16px 0 0;
-      display: none;
-      flex-direction: column;
-      z-index: 9999;
-      animation: slideUp 0.3s ease;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      z-index: 10000;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      max-width: 300px;
     }
-    @keyframes slideUp {
-      from {
-        transform: translateY(100%);
+    .toast.show {
+      transform: translateX(0);
+    }
+    .toast-success {
+      background: #4CAF50;
+    }
+    .toast-error {
+      background: #f44336;
+    }
+    .toast-info {
+      background: #2196F3;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 480px) {
+      .wa-popup {
+        right: 10px;
+        width: calc(100% - 20px);
+        max-width: 260px;
       }
-      to {
-        transform: translateY(0);
+      .spotify-container {
+        width: calc(100% - 40px);
       }
     }
-    .live-header {
-      padding: 12px 14px;
-      background: #1f1f1f;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .live-header button {
-      background: none;
-      border: none;
-      color: #aaa;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    .live-body {
-      flex: 1;
-      padding: 12px;
-    }
-    .chat-bubble {
-      background: #2a2a2a;
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 12px;
-      max-width: 80%;
-      font-size: 14px;
-    }
-    .live-footer {
-      padding: 10px;
-      display: flex;
-      gap: 8px;
-    }
-    .live-footer a {
-      flex: 1;
-      background: #1f1f1f;
-      color: #fff;
-      text-align: center;
-      padding: 8px 0;
-      border-radius: 20px;
-      font-size: 13px;
-      text-decoration: none;
-      border: 1px solid #2e2e2e;
-    }
-    .request-section {
-  max-width: 420px;
-  margin: 40px auto;
-  padding: 20px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-  color: #fff;
-}
-
-.request-section h2 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-#requestForm input,
-#requestForm textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-}
-
-#requestForm button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#00c6ff,#0072ff);
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#status {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
   </style>
 </head>
 
@@ -457,7 +495,7 @@
         Selamat Datang di Website Lyy
       </div>
       <div class="quote fade-in" style="animation-delay:0.4s;">
-        ✨ “Doa yang tulus tak pernah sia-sia, hanya menunggu waktu terbaik dari Allah.”<br><br>
+        ✨ "Doa yang tulus tak pernah sia-sia, hanya menunggu waktu terbaik dari Allah."<br><br>
         <small>Quotes By Lyy | Ai</small>
       </div>
     </div>
@@ -476,65 +514,28 @@
       <div class="big-title">Security Management</div>
       <div class="big-desc">Keamanan data dan pengamanan akses</div>
     </div>
-    <div class="request-section">
-  <h2>🚀 Request Fitur</h2>
 
-  <form id="requestForm">
-    <input type="text" id="name" placeholder="Nama kamu" required>
-    <input type="text" id="title" placeholder="Judul fitur" required>
-    <textarea id="desc" placeholder="Deskripsi fitur" required></textarea>
-    <button type="submit">📩 Kirim ke Telegram</button>
-  </form>
+    <!-- Spotify Container -->
+    <div class="spotify-container fade-in" style="animation-delay:1.2s;">
+      <iframe
+        src="https://open.spotify.com/embed/playlist/58Cbq5mDo54n80Y4i7FCQR?si=JeECkQoxRc20yoZMeA5PGg"
+        class="spotify-float"
+        allow="encrypted-media">
+      </iframe>
+    </div>
 
-  <p id="status"></p>
-</div>
+    <!-- Request Section -->
+    <div class="request-section fade-in" style="animation-delay:1.4s;">
+      <h2>🚀 Request Fitur</h2>
 
-<script>
-const TOKEN = "8211011386:AAEeWeXPveAM7M-16X7ulTGvERXQIi_RdJE";
-const CHAT_ID = "8058947668";
+      <form id="requestForm">
+        <input type="text" id="name" placeholder="Nama kamu" required>
+        <input type="text" id="title" placeholder="Judul fitur" required>
+        <textarea id="desc" placeholder="Deskripsi fitur" rows="4" required></textarea>
+        <button type="submit" id="submitBtn">📩 Kirim ke Telegram</button>
+      </form>
 
-document.getElementById("requestForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const title = document.getElementById("title").value;
-  const desc = document.getElementById("desc").value;
-
-  const message = `
-📩 *REQUEST FITUR BARU*
-👤 Nama: ${name}
-📝 Judul: ${title}
-
-📖 Deskripsi:
-${desc}
-  `;
-
-  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  })
-  .then(res => {
-    document.getElementById("status").innerText = "✅ Request terkirim ke Telegram!";
-    document.getElementById("requestForm").reset();
-  })
-  .catch(err => {
-    document.getElementById("status").innerText = "❌ Gagal mengirim!";
-  });
-});
-</script>
-  </div>
-<!-- Spotify -->
-<div class="spotify-float">
-  <iframe
-    src="https://open.spotify.com/embed/playlist/58Cbq5mDo54n80Y4i7FCQR?si=JeECkQoxRc20yoZMeA5PGg"
-    allow="encrypted-media">
-  </iframe>
-</div>
+      <div id="status"></div>
     </div>
   </div>
 
@@ -631,7 +632,7 @@ ${desc}
 
   <!-- NAVBAR -->
   <div class="navbar-bottom">
-    <a onclick="show('home')">
+    <a onclick="show('home')" class="active">
       <div style="font-size:24px;">🏠</div>home
     </a>
     <a onclick="show('Support')">
@@ -666,84 +667,75 @@ ${desc}
           <small>( di buat testi bre )</small>
         </div>
       </a>
-<a href="https://t.me/Kaguchiii" target="_blank" class="wa-option">
-  <div class="wa-icon-small">
-    <i class="fab fa-telegram"></i>
-  </div>
-  <div class="wa-text">
-    <span>Telegram</span>
-  </div>
-</a>
+      <a href="https://t.me/Kaguchiii" target="_blank" class="telegram-option">
+        <div class="telegram-icon-small">
+          <i class="fab fa-telegram"></i>
+        </div>
+        <div class="wa-text">
+          <span>Telegram</span>
+        </div>
+      </a>
     </div>
   </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
   <script>
     /* ---------- Page navigation ---------- */
     function show(page) {
+      // Hide all pages
       document.querySelectorAll(".page").forEach(p => (p.style.display = "none"));
+      
+      // Show active page
       const active = document.getElementById(page);
       active.style.display = "block";
+      
+      // Reset animations
       active.querySelectorAll(".fade-in").forEach(el => {
         el.style.animation = "none";
         el.offsetHeight; /* reflow */
         el.style.animation = "";
       });
+
+      // Update navbar active state
+      document.querySelectorAll('.navbar-bottom a').forEach(link => {
+        link.classList.remove('active');
+      });
+      document.querySelector(`[onclick="show('${page}')"]`).classList.add('active');
     }
 
     /* ---------- Copy Dana ---------- */
     function copyDana() {
       const dana = document.getElementById("dana").innerText;
-      navigator.clipboard.writeText(dana);
-      alert("Nomor Dana disalin!");
+      navigator.clipboard.writeText(dana).then(() => {
+        showToast('Nomor Dana berhasil disalin!', 'success');
+      }).catch(() => {
+        showToast('Gagal menyalin nomor Dana', 'error');
+      });
     }
 
-    /* ---------- Music toggle ---------- */
-    const musicBtn = document.getElementById("music-btn");
-    const bgMusic = document.getElementById("bg-music");
-    musicBtn.addEventListener("click", () => {
-      if (bgMusic.paused) {
-        bgMusic.play();
-        musicBtn.textContent = "🔊";
-      } else {
-        bgMusic.pause();
-        musicBtn.textContent = "🎵";
-      }
-    });
-
-    /* unmute after first interaction */
-    document.body.addEventListener("click", () => {
-      bgMusic.muted = false;
-    }, { once: true });
+    /* ---------- Toast Notification ---------- */
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast-${type} show`;
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
 
     /* ---------- Theme toggle ---------- */
     const themeBtn = document.getElementById("theme-btn");
     themeBtn.addEventListener("click", () => {
       document.body.classList.toggle("light-mode");
       themeBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+      localStorage.setItem('theme', document.body.classList.contains("light-mode") ? 'light' : 'dark');
     });
 
-    /* ---------- WhatsApp Popup ---------- */
-    const waBtn = document.getElementById("waBtn");
-    const waPopup = document.getElementById("waPopup");
-    const waClose = document.getElementById("waClose");
-
-    waBtn.addEventListener("click", () => {
-      waPopup.style.display = waPopup.style.display === "block" ? "none" : "block";
-    });
-    waClose.addEventListener("click", () => {
-      waPopup.style.display = "none";
-    });
-
-    /* ---------- Live Support Popup ---------- */
-    const liveBtn = document.getElementById("liveBtn");
-    const livePopup = document.getElementById("livePopup");
-    const liveClose = document.getElementById("liveClose");
-
-    liveBtn.addEventListener("click", () => {
-      livePopup.style.display = "flex";
-    });
-    liveClose.addEventListener("click", () => {
-      livePopup.style.display = "none";
-    });
-  </script>
-</body>
-</html>
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      them
