@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,27 @@
     }
 
     /* ---------- Top-right controls ---------- */
-    
+    .top-right {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+    }
+    .icon-btn {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(3px);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
     /* ---------- Hero ---------- */
     .hero {
       width: 90%;
@@ -180,49 +200,67 @@
     }
 
     /* ---------- Request Section ---------- */
-.request-section {
-  max-width: 420px;
-  margin: 40px auto;
-  padding: 20px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-  color: #fff;
-}
-
-.request-section h2 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-#requestForm input,
-#requestForm textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-}
-
-#requestForm button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#00c6ff,#0072ff);
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#status {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-}
+    .request-section {
+      width: 90%;
+      max-width: 450px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      color: #fff;
+    }
+    body.light-mode .request-section {
+      background: rgba(0,0,0,0.08);
+      color: #111;
+    }
+    .request-section h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    #requestForm input,
+    #requestForm textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    body.light-mode #requestForm input,
+    body.light-mode #requestForm textarea {
+      background: rgba(0,0,0,0.15);
+      color: #111;
+    }
+    #requestForm button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#00c6ff,#0072ff);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #requestForm button:hover {
+      transform: scale(1.02);
+    }
+    #requestForm button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #status {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 8px;
+      display: none;
+    }
     .status-success {
       background: rgba(76, 175, 80, 0.2);
       color: #4CAF50;
@@ -442,6 +480,12 @@
 </head>
 
 <body>
+
+  <!-- Top-right Controls -->
+  <div class="top-right">
+    <div class="icon-btn" id="theme-btn">🌙</div>
+  </div>
+
   <!-- HOME PAGE -->
   <div class="page" id="home">
     <div class="hero">
@@ -481,57 +525,19 @@
     </div>
 
     <!-- Request Section -->
-      <div class="request-section">
-  <h2>🚀 Request Fitur</h2>
+    <div class="request-section fade-in" style="animation-delay:1.4s;">
+      <h2>🚀 Request Fitur</h2>
 
-  <form id="requestForm">
-    <input type="text" id="name" placeholder="Nama kamu" required>
-    <input type="text" id="title" placeholder="Judul fitur" required>
-    <textarea id="desc" placeholder="Deskripsi fitur" required></textarea>
-    <button type="submit">📩 Kirim ke Telegram</button>
-  </form>
+      <form id="requestForm">
+        <input type="text" id="name" placeholder="Nama kamu" required>
+        <input type="text" id="title" placeholder="Judul fitur" required>
+        <textarea id="desc" placeholder="Deskripsi fitur" rows="4" required></textarea>
+        <button type="submit" id="submitBtn">📩 Kirim ke Telegram</button>
+      </form>
 
-  <p id="status"></p>
-</div>
-
-<script>
-const TOKEN = "8211011386:AAEeWeXPveAM7M-16X7ulTGvERXQIi_RdJE";
-const CHAT_ID = "8058947668";
-
-document.getElementById("requestForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const title = document.getElementById("title").value;
-  const desc = document.getElementById("desc").value;
-
-  const message = `
-📩 *REQUEST FITUR BARU*
-👤 Nama: ${name}
-📝 Judul: ${title}
-
-📖 Deskripsi:
-${desc}
-  `;
-
-  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  })
-  .then(res => {
-    document.getElementById("status").innerText = "✅ Request terkirim ke Telegram!";
-    document.getElementById("requestForm").reset();
-  })
-  .catch(err => {
-    document.getElementById("status").innerText = "❌ Gagal mengirim!";
-  });
-});
-</script>
+      <div id="status"></div>
+    </div>
+  </div>
 
   <!-- SUPPORT PAGE -->
   <div class="page" id="Support">
@@ -732,4 +738,180 @@ ${desc}
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
       document.body.classList.add('light-mode');
-      them
+      themeBtn.textContent = "☀️";
+       }
+
+    /* ---------- WhatsApp Popup ---------- */
+    const waBtn = document.getElementById("waBtn");
+    const waPopup = document.getElementById("waPopup");
+    const waClose = document.getElementById("waClose");
+
+    waBtn.addEventListener("click", () => {
+      waPopup.style.display = waPopup.style.display === "block" ? "none" : "block";
+    });
+    
+    waClose.addEventListener("click", () => {
+      waPopup.style.display = "none";
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!waPopup.contains(e.target) && !waBtn.contains(e.target)) {
+        waPopup.style.display = "none";
+      }
+    });
+
+    /* ---------- Form Submission ---------- */
+    const TOKEN = "8211011386:AAEeWeXPveAM7M-16X7ulTGvERXQIi_RdJE";
+    const CHAT_ID = "8058947668";
+
+    document.getElementById("requestForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const submitBtn = document.getElementById("submitBtn");
+      const status = document.getElementById("status");
+      const name = document.getElementById("name").value.trim();
+      const title = document.getElementById("title").value.trim();
+      const desc = document.getElementById("desc").value.trim();
+
+      // Validasi
+      if (!name || !title || !desc) {
+        showToast('Mohon isi semua field!', 'error');
+        return;
+      }
+
+      if (desc.length < 10) {
+        showToast('Deskripsi minimal 10 karakter!', 'error');
+        return;
+      }
+
+      // Disable button dan show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = "⏳ Mengirim...";
+      status.className = "status-loading";
+      status.textContent = "Mengirim request ke Telegram...";
+      status.style.display = "block";
+
+      const message = `
+📩 *REQUEST FITUR BARU*
+👤 Nama: ${name}
+📝 Judul: ${title}
+
+📖 Deskripsi:
+${desc}
+
+⏰ Waktu: ${new Date().toLocaleString('id-ID')}
+      `;
+
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          status.className = "status-success";
+          status.textContent = "✅ Request berhasil terkirim ke Telegram!";
+          showToast('Request berhasil dikirim!', 'success');
+          document.getElementById("requestForm").reset();
+        } else {
+          throw new Error('Failed to send message');
+        }
+      })
+      .catch(err => {
+        status.className = "status-error";
+        status.textContent = "❌ Gagal mengirim request. Coba lagi!";
+        showToast('Gagal mengirim request!', 'error');
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "📩 Kirim ke Telegram";
+        setTimeout(() => {
+          status.style.display = "none";
+        }, 5000);
+      });
+    });
+
+    /* ---------- Form Input Validation ---------- */
+    const inputs = document.querySelectorAll('#requestForm input, #requestForm textarea');
+    inputs.forEach(input => {
+      input.addEventListener('input', function() {
+        if (this.value.trim()) {
+          this.style.border = "1px solid #4CAF50";
+        } else {
+          this.style.border = "none";
+        }
+      });
+    });
+
+    /* ---------- Smooth Scroll ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    /* ---------- Keyboard Navigation ---------- */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        waPopup.style.display = 'none';
+      }
+    });
+
+    /* ---------- Intersection Observer for Animations ---------- */
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+
+    /* ---------- Performance Optimization ---------- */
+    // Lazy loading for images
+    const images = document.querySelectorAll('img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src || img.src;
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+
+    /* ---------- Console Welcome Message ---------- */
+    console.log('%c🚀 Lyy Website', 'font-size: 24px; color: #4aaaff; font-weight: bold;');
+    console.log('%cSelamat datang di website Lyy!', 'font-size: 14px; color: #b966ff;');
+    console.log('%cJika ada bug atau saran, silakan hubungi admin.', 'font-size: 12px; color: #888;');
+  </script>
+</body>
+</html>
